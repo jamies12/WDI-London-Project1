@@ -6,19 +6,22 @@ $(function() {
   var $obstacle = $('.obstacle');
   var $obstacleUp = $('.highObstacle');
   var $obstacleLow = $('.lowObstacle');
-  var $obstacleDelete = $('.killZone');
   var $status = $('.status');
   var animationDuration = Math.floor(Math.random()*1000) + 1000;
+  var $playerScore = $('.score');
 
+  $playerScore = 0;
 
-  // var obstaclePosition = $obstacle.position();
-  // var characterPosition = $character.position();
+  setInterval(function() {
+    $playerScore++;
+    $('.score').text = $playerScore;
+  }, 200);
 
 
   function runAnimation(delay) {
     setTimeout(function(){
       $obstacle.animate({ left: -50 }, {
-        duration: 1800,
+        duration: 2400,
         easing: 'linear',
         progress: function() {
           checkCollisions1();
@@ -36,7 +39,7 @@ $(function() {
   function runAnimation2(delay) {
     setTimeout(function(){
       $obstacleUp.animate({ left: -90 }, {
-        duration: 1800,
+        duration: 2400,
         easing: 'linear',
         progress: function() {
          checkCollisions2();
@@ -53,7 +56,7 @@ $(function() {
   function runAnimation3(delay) {
     setTimeout(function(){
       $obstacleLow.animate({ left: -90 }, {
-        duration: 1800,
+        duration: 2400,
         easing: 'linear',
         progress: function() {
          checkCollisions3();
@@ -67,19 +70,37 @@ $(function() {
   }
   runAnimation3(Math.floor(Math.random()*3000) + 1000);
 
-
-    $(this).keyup(function(e) {
-      if(e.keyCode === 0 || e.keyCode === 32) {
+  $(this).keyup(function(e) {
+    if(e.keyCode === 0 || e.keyCode === 32) {
       $($character).animate({ top: 260 }, {
         duration: 300,
         easing: 'linear',
         complete: function() {
           fallDown();
-          // $(this).css({top: 340});
-        }
+          }
       });
     }
   });
+
+  $(this).keyup(function(e) {
+    if(e.keyCode === 16) {
+      $($character).animate({ top: 380}, {
+        duration: 200,
+        easing: 'linear',
+        complete: function() {
+          getUp();
+        }
+      });
+    }
+
+  });
+
+  function getUp() {
+    $($character).animate({top: 340}, {
+      duration: 150,
+      easing: 'linear'
+    });
+  }
 
   function fallDown() {
     $($character).animate({top: 340}, {
@@ -158,9 +179,5 @@ $(function() {
     var match = horizontalMatch3 && verticalMatch3;
     if (match) {console.log('COLLISION LOW!');}
   }
-
-
-
-
 
 });
