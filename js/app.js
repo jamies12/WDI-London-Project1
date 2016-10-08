@@ -1,48 +1,79 @@
 $(function() {
 
   var checkCollisionsIntervalId;
-  var playSpace = $('.gameSpace');
-  var character = $('.player');
-  var obstacle = $('.obstacle');
-  var obstacleUp = $('.highObstacle');
-  var obstacleLow = $('.lowObstacle');
-  var obstacleDelete = $('.killZone');
-  var gameOver = $('.status');
+  var $playSpace = $('.gameSpace');
+  var $character = $('.player');
+  var $obstacle = $('.obstacle');
+  var $obstacleUp = $('.highObstacle');
+  var $obstacleLow = $('.lowObstacle');
+  var $obstacleDelete = $('.killZone');
+  var $status = $('.status');
+  var animationDuration = Math.floor(Math.random()*1000) + 1000;
   // var clone = $(obstacle).clone(true);
 
-  var obstaclePosition = $(obstacle).position();
-  var characterPosition = $(character).position();
-  console.log(characterPosition);
-  console.log(obstaclePosition);
+  var obstaclePosition = $obstacle.position();
+  var characterPosition = $character.position();
+  // console.log(characterPosition);
+  // console.log(obstaclePosition);
   // console.log(clone);
 
-  setInterval(function() {
-      $(obstacle).animate({left: -50}, 1800, 'linear', checkCollisions1,initiateCheckCollisions1(), function() {
-        $(this).css({left: 905});
+  function runAnimation(delay) {
+    setTimeout(function(){
+      $obstacle.animate({ left: -50 }, {
+        duration: 1800,
+        easing: 'linear',
+        progress: function() {
+          checkCollisions1();
+        },
+        complete: function() {
+          $(this).css({left: 905});
+          runAnimation(Math.floor(Math.random()*3000) + 1000);
+        }
       });
-    }, Math.floor(Math.random()*800) + 100);
-
-    setInterval(function() {
-      $(obstacleUp).animate({left: -50}, 1800, 'linear', checkCollisions2, initiateCheckCollisions2(), function() {
-        $(this).css({left: 905});
-      }, Math.floor(Math.random()*1400) + 1200);
-    });
-    setInterval(function() {
-    $(obstacleLow).animate({left: -50}, 1800, 'linear', checkCollisions3, initiateCheckCollisions3(), function() {
-      $(this).css({left: 905});
-    }, Math.floor(Math.random()*1200) + 1500);
-  });
-
-
-  function initiateCheckCollisions1() {
-    checkCollisionsIntervalId1 = setInterval(checkCollisions1, 100);
+    }, delay);
   }
+  runAnimation(Math.floor(Math.random()*3000) + 1000);
 
-  function findPosition(playerChar) {
-    var $playerChar = $(playerChar);
-    var pos = $playerChar.position();
-    var width = $playerChar.width();
-    var height = $playerChar.height();
+
+  function runAnimation2(delay) {
+    setTimeout(function(){
+      $obstacleUp.animate({ left: -90 }, {
+        duration: 1800,
+        easing: 'linear',
+        progress: function() {
+         checkCollisions2();
+        },
+        complete: function() {
+          $(this).css({left: 905});
+          runAnimation2(Math.floor(Math.random()*3000) + 1000);
+        }
+      });
+    }, delay);
+  }
+  runAnimation2(Math.floor(Math.random()*3000) + 1000);
+
+  function runAnimation3(delay) {
+    setTimeout(function(){
+      $obstacleLow.animate({ left: -90 }, {
+        duration: 1800,
+        easing: 'linear',
+        progress: function() {
+         checkCollisions3();
+        },
+        complete: function() {
+          $(this).css({left: 905});
+          runAnimation3(Math.floor(Math.random()*3000) + 1000);
+        }
+      });
+    }, delay);
+  }
+  runAnimation3(Math.floor(Math.random()*3000) + 1000);
+
+
+  function findPosition($character) {
+    var pos = $character.position();
+    var width = $character.width();
+    var height = $character.height();
     return [[pos.left, pos.left + width], [pos.top, pos.top + height]];
   }
 
@@ -53,10 +84,10 @@ $(function() {
   }
 
   function checkCollisions1(){
-    var playerChar = $('.player')[0];
-    var pos = findPosition(playerChar);
 
-    var pos2 = findPosition(obstacle);
+    var pos = findPosition($character);
+
+    var pos2 = findPosition($obstacle);
     var horizontalMatch = comparePositions(pos[0], pos2[0]);
     var verticalMatch = comparePositions(pos[1], pos2[1]);
 
@@ -76,10 +107,10 @@ $(function() {
   }
 
   function checkCollisions2(){
-    var playerChar = $('.player')[0];
-    var pos = findPosition(playerChar);
 
-    var pos3 = findPosition(obstacleUp);
+    var pos = findPosition($character);
+
+    var pos3 = findPosition($obstacleUp);
     var horizontalMatch2 = comparePositions2(pos[0], pos3[0]);
     var verticalMatch2 = comparePositions2(pos[1], pos3[1]);
 
@@ -99,18 +130,14 @@ $(function() {
   }
 
   function checkCollisions3(){
-    var playerChar = $('.player')[0];
-    var pos = findPosition(playerChar);
 
-    var pos4 = findPosition(obstacleLow);
+    var pos = findPosition($character);
+
+    var pos4 = findPosition($obstacleLow);
     var horizontalMatch3 = comparePositions3(pos[0], pos4[0]);
     var verticalMatch3 = comparePositions3(pos[1], pos4[1]);
 
     var match = horizontalMatch3 && verticalMatch3;
     if (match) {console.log('COLLISION LOW!');}
   }
-
-  // $('#stop-detecting-collisions').click(function () {
-  //   clearInterval(checkCollisionsIntervalId);
-  // });
 });
