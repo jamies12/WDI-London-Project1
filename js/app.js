@@ -11,6 +11,7 @@ $(function() {
   var $playerScore = $('.score');
   var $scoreCounter = 0;
 
+
   setInterval(function() {
     $playerScore.html($scoreCounter);
     $scoreCounter++;
@@ -70,22 +71,60 @@ $(function() {
   }
   runAnimation3(Math.floor(Math.random()*3000) + 1000);
 
+    // jump function
   $(this).keyup(function(e) {
     if(e.keyCode === 0 || e.keyCode === 32) {
-      $($character).animate({ top: 260 }, {
-        duration: 300,
+      airStyle();
+      $($character).animate({ top: '-=120px' }, {
+        duration: 350,
         easing: 'linear',
         complete: function() {
           fallDown();
+          // doubleJump();
           }
       });
     }
   });
 
+  function fallDown() {
+    $($character).animate({top: '+=120px'}, {
+      duration: 180,
+      easing: 'linear',
+      complete: function() {
+        standStyle();
+      }
+    });
+  }
+
+  // function doubleJump() {
+  //   $(window).keyup(function(e) {
+  //     if((e.keyCode === 0 || e.keyCode === 32) ) {
+  //       $($character).stop();
+  //       $($character).animate({ top: '-=100px' }, {
+  //         duration: 200,
+  //         easing: 'linear',
+  //         complete: function() {
+  //           fallDown2();
+  //           console.log('doubleJump!!');
+  //           }
+  //       });
+  //     }
+  //   });
+  // }
+  //
+  // function fallDown2() {
+  //   $($character).animate({top: 340}, {
+  //     duration: 150,
+  //     easing: 'linear'
+  //   });
+  // }
+
+    // slide function
   $(this).keyup(function(e) {
     if(e.keyCode === 16) {
-      $($character).animate({ top: 380}, {
-        duration: 200,
+      slideStyle();
+      $($character).animate({ top: '+=50px'}, {
+        duration: 120,
         easing: 'linear',
         complete: function() {
           getUp();
@@ -96,16 +135,27 @@ $(function() {
   });
 
   function getUp() {
-    $($character).animate({top: 340}, {
-      duration: 150,
-      easing: 'linear'
+    $($character).animate({top: '-=50px'}, {
+      duration: 340,
+      easing: 'linear',
+      complete: function() {
+        standStyle();
+      }
     });
   }
-
-  function fallDown() {
-    $($character).animate({top: 340}, {
-      duration: 150,
-      easing: 'linear'
+  function airStyle() {
+      $($character).css({height: 40,
+        width: 30
+      });
+  }
+  function slideStyle() {
+    $($character).css({height:30,
+      width: 70
+    });
+  }
+  function standStyle() {
+    $($character).css({height: 70,
+      width: 40
     });
   }
 
@@ -131,12 +181,12 @@ $(function() {
     var verticalMatch = comparePositions(pos[1], pos2[1]);
 
     var match = horizontalMatch && verticalMatch;
-    if (match) {console.log('COLLISION!');}
+    if (match) {console.log('COLLISION!') ;}
   }
 
 
   function initiateCheckCollisions2() {
-    checkCollisionsIntervalId1 = setInterval(checkCollisions2, 1620);
+    checkCollisionsIntervalId1 = setInterval(checkCollisions2, 2500);
   }
 
   function comparePositions2(p1, p3) {
@@ -159,7 +209,7 @@ $(function() {
 
 
   function initiateCheckCollisions3() {
-    checkCollisionsIntervalId1 = setInterval(checkCollisions3, 1500);
+    checkCollisionsIntervalId1 = setInterval(checkCollisions3, 2500);
   }
 
   function comparePositions3(p1, p4) {
