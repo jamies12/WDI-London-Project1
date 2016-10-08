@@ -9,13 +9,11 @@ $(function() {
   var $obstacleDelete = $('.killZone');
   var $status = $('.status');
   var animationDuration = Math.floor(Math.random()*1000) + 1000;
-  // var clone = $(obstacle).clone(true);
 
-  var obstaclePosition = $obstacle.position();
-  var characterPosition = $character.position();
-  // console.log(characterPosition);
-  // console.log(obstaclePosition);
-  // console.log(clone);
+
+  // var obstaclePosition = $obstacle.position();
+  // var characterPosition = $character.position();
+
 
   function runAnimation(delay) {
     setTimeout(function(){
@@ -68,6 +66,20 @@ $(function() {
     }, delay);
   }
   runAnimation3(Math.floor(Math.random()*3000) + 1000);
+
+
+    $(this).keypress(function(e) {
+      if(e.keyCode === 0 || e.keyCode === 32) {
+      $($character).animate({ top: 220 }, {
+        duration: 300,
+        easing: 'linear',
+        complete: function() {
+          $(this).css({top: 340});
+        }
+      });
+    }
+  });
+
 
 
   function findPosition($character) {
@@ -140,4 +152,9 @@ $(function() {
     var match = horizontalMatch3 && verticalMatch3;
     if (match) {console.log('COLLISION LOW!');}
   }
+
+
+
+
+
 });
