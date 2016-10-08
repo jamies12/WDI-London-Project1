@@ -3,7 +3,8 @@
   width: 900px;
   border-style: solid;
   margin-left: 5%;
-  position: absolute;;
+  position: absolute;
+  top: 80px;
 }
 
 .player {
@@ -15,13 +16,42 @@
   top: 340px;
   left: 110px;
 }
+button {
+  position: absolute;
+  top: 50px;
+  left: 820px;
 
+}
 .obstacle {
-  height: 70px;
+  height: 55px;
   width: 40px;
   background-color: blue;
   position: inherit;
   /*float: right;*/
-  top: 340px;
-  left: 905px;
+  top: 355px;
+  left: 995px;
+}
+.lowObstacle {
+  height: 30px;
+  width: 60px;
+  background-color: purple;
+  position: inherit;
+  top: 380px;
+  left: 915px;
+}
+.highObstacle {
+  height: 45px;
+  width: 70px;
+  background-color: orange;
+  position: inherit;
+  top: 320px;
+  left: 915px;
+}
+.killZone {
+  height: 100px;
+  width: 90px;
+  background-color: grey;
+  position: inherit;
+  top: 315px;
+  left: -94px;
 }
