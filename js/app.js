@@ -9,13 +9,13 @@ $(function() {
   var $status = $('.status');
   var animationDuration = Math.floor(Math.random()*1000) + 1000;
   var $playerScore = $('.score');
-
-  $playerScore = 0;
+  var $scoreCounter = 0;
 
   setInterval(function() {
-    $playerScore++;
-    $('.score').text = $playerScore;
-  }, 200);
+    $playerScore.html($scoreCounter);
+    $scoreCounter++;
+  }, 50);
+
 
 
   function runAnimation(delay) {

@@ -48,7 +48,7 @@ button {
 .score {
   height: 30px;
   width: 200px;
-  background-color: green;
+  /*background-color: green;*/
   color: blue;
   position: inherit;
   top: 10px;
