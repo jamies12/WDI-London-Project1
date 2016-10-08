@@ -68,19 +68,25 @@ $(function() {
   runAnimation3(Math.floor(Math.random()*3000) + 1000);
 
 
-    $(this).keypress(function(e) {
+    $(this).keyup(function(e) {
       if(e.keyCode === 0 || e.keyCode === 32) {
-      $($character).animate({ top: 220 }, {
+      $($character).animate({ top: 260 }, {
         duration: 300,
         easing: 'linear',
         complete: function() {
-          $(this).css({top: 340});
+          fallDown();
+          // $(this).css({top: 340});
         }
       });
     }
   });
 
-
+  function fallDown() {
+    $($character).animate({top: 340}, {
+      duration: 150,
+      easing: 'linear'
+    });
+  }
 
   function findPosition($character) {
     var pos = $character.position();
