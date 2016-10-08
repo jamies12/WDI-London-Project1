@@ -16,25 +16,26 @@ $(function() {
   console.log(obstaclePosition);
   // console.log(clone);
 
-  $(obstacle).click(function() {
-    console.log('obstacle clicked');
-    obstacle.animate({left: -50}, 1800, 'linear', checkCollisions1);
-    initiateCheckCollisions1();
-  });
-  $(obstacleUp).click(function() {
-    console.log('obstacleUp clicked');
-    obstacleUp.animate({left: -50}, 1800, 'linear', checkCollisions2);
-    initiateCheckCollisions2();
-  });
-  $(obstacleLow).click(function() {
-    console.log('obstacleLow clicked');
-    obstacleLow.animate({left: -50}, 1800, 'linear', checkCollisions3);
-    initiateCheckCollisions3();
+  setInterval(function() {
+      $(obstacle).animate({left: -50}, 1800, 'linear', checkCollisions1,initiateCheckCollisions1(), function() {
+        $(this).css({left: 905});
+      });
+    }, Math.floor(Math.random()*800) + 100);
+
+    setInterval(function() {
+      $(obstacleUp).animate({left: -50}, 1800, 'linear', checkCollisions2, initiateCheckCollisions2(), function() {
+        $(this).css({left: 905});
+      }, Math.floor(Math.random()*1400) + 1200);
+    });
+    setInterval(function() {
+    $(obstacleLow).animate({left: -50}, 1800, 'linear', checkCollisions3, initiateCheckCollisions3(), function() {
+      $(this).css({left: 905});
+    }, Math.floor(Math.random()*1200) + 1500);
   });
 
 
   function initiateCheckCollisions1() {
-    checkCollisionsIntervalId1 = setInterval(checkCollisions1, 40);
+    checkCollisionsIntervalId1 = setInterval(checkCollisions1, 100);
   }
 
   function findPosition(playerChar) {
@@ -65,7 +66,7 @@ $(function() {
 
 
   function initiateCheckCollisions2() {
-    checkCollisionsIntervalId1 = setInterval(checkCollisions2, 40);
+    checkCollisionsIntervalId1 = setInterval(checkCollisions2, 1620);
   }
 
   function comparePositions2(p1, p3) {
@@ -88,7 +89,7 @@ $(function() {
 
 
   function initiateCheckCollisions3() {
-    checkCollisionsIntervalId1 = setInterval(checkCollisions3, 40);
+    checkCollisionsIntervalId1 = setInterval(checkCollisions3, 1500);
   }
 
   function comparePositions3(p1, p4) {
@@ -109,13 +110,7 @@ $(function() {
     if (match) {console.log('COLLISION LOW!');}
   }
 
-
-
-  $('#stop-detecting-collisions').click(function () {
-    clearInterval(checkCollisionsIntervalId);
-  });
-
-
-
-
+  // $('#stop-detecting-collisions').click(function () {
+  //   clearInterval(checkCollisionsIntervalId);
+  // });
 });
