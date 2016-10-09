@@ -6,6 +6,7 @@ $(function() {
   var $obstacle = $('.obstacle');
   var $obstacleUp = $('.highObstacle');
   var $obstacleLow = $('.lowObstacle');
+  var $obstacleAir = $('.airObstacle');
   var $status = $('.status');
   var animationDuration = Math.floor(Math.random()*1000) + 1000;
   var $playerScore = $('.score');
@@ -14,17 +15,25 @@ $(function() {
   var $slideCount = 0;
   var $lifeCounter = $('.lifeScore');
   var $lifeAmount = 200;
-
+  var $playerDead = function() {
+      $($character).animate({left: -50}, {
+        duration: 150,
+        easing: 'linear',
+        complete: function() {
+          deadStyle();
+        }
+      });
+  };
 
   $lifeCounter.html('HEALTH: ' + $lifeAmount);
 
   setInterval(function() {
-    $playerScore.html($scoreCounter);
+    $playerScore.html('Score: ' + $scoreCounter);
     $scoreCounter++;
   }, 50);
 
 
-
+  // obstacle movement loops
   function runAnimation(delay) {
     setTimeout(function(){
       $obstacle.animate({ left: -50 }, {
@@ -41,7 +50,6 @@ $(function() {
     }, delay);
   }
   runAnimation(Math.floor(Math.random()*3000) + 1000);
-
 
   function runAnimation2(delay) {
     setTimeout(function(){
@@ -77,11 +85,27 @@ $(function() {
   }
   runAnimation3(Math.floor(Math.random()*3000) + 1000);
 
+  function runAnimation4(delay) {
+    setTimeout(function(){
+      $obstacleAir.animate({ left: -90 }, {
+        duration: 2400,
+        easing: 'linear',
+        progress: function() {
+         checkCollisions4();
+        },
+        complete: function() {
+          $(this).css({left: 905});
+          runAnimation4(Math.floor(Math.random()*4000) + 1000);
+        }
+      });
+    }, delay);
+  }
+  runAnimation4(Math.floor(Math.random()*4000) + 1000);
+
     // jump function
   $(this).keyup(function(e) {
     if($jumpCount < 2 && (e.keyCode === 0 || e.keyCode === 32)) {
       $jumpCount++;
-      // airStyle();
       $($character).animate({ top: '-=90px' }, {
         duration: 250,
         easing: 'linear',
@@ -97,7 +121,6 @@ $(function() {
       duration: 160,
       easing: 'linear',
       complete: function() {
-        // standStyle();
       }
     });
     $jumpCount--;
@@ -130,6 +153,9 @@ $(function() {
     });
     $slideCount--;
   }
+
+  // different character css styles for different actions
+
   // function airStyle() {
   //     $($character).css({height: 40,
   //       width: 30
@@ -146,6 +172,9 @@ $(function() {
     });
   }
 
+  // collision detection
+
+  // finding player position
   function findPosition($character) {
     var pos = $character.position();
     var width = $character.width();
@@ -174,9 +203,9 @@ $(function() {
   }
 
 
-  function initiateCheckCollisions2() {
-    checkCollisionsIntervalId1 = setInterval(checkCollisions2, 2500);
-  }
+  // function initiateCheckCollisions2() {
+  //   checkCollisionsIntervalId1 = setInterval(checkCollisions2, 2500);
+  // }
 
   function comparePositions2(p1, p3) {
     var x1 = p1[0] < p3[0] ? p1 : p3;
@@ -199,9 +228,9 @@ $(function() {
   }
 
 
-  function initiateCheckCollisions3() {
-    checkCollisionsIntervalId1 = setInterval(checkCollisions3, 3500);
-  }
+  // function initiateCheckCollisions3() {
+  //   checkCollisionsIntervalId1 = setInterval(checkCollisions3, 3500);
+  // }
 
   function comparePositions3(p1, p4) {
     var x1 = p1[0] < p4[0] ? p1 : p4;
@@ -222,20 +251,34 @@ $(function() {
       $lifeAmount--;
       $lifeCounter.html('HEALTH: ' + $lifeAmount);}
   }
+  // function initiateCheckCollisions4() {
+  //   checkCollisionsIntervalId1 = setInterval(checkCollisions4, 3500);
+  // }
+
+  function comparePositions4(p1, p5) {
+    var x1 = p1[0] < p5[0] ? p1 : p5;
+    var x2 = p1[0] < p5[0] ? p5 : p1;
+    return x1[1] > x2[0] || x1[0] === x2[0] ? true : false;
+  }
+
+  function checkCollisions4(){
+
+    var pos = findPosition($character);
+
+    var pos5 = findPosition($obstacleAir);
+    var horizontalMatch4 = comparePositions4(pos[0], pos5[0]);
+    var verticalMatch4 = comparePositions4(pos[1], pos5[1]);
+
+    var match = horizontalMatch4 && verticalMatch4;
+    if (match) {console.log('COLLISION AIR!');
+      $lifeAmount--;
+      $lifeCounter.html('HEALTH: ' + $lifeAmount);}
+  }
 
   if ($lifeAmount <= 0){
-    playerDead();
+    $playerDead();
   }
 
-  function playerDead() {
-      $($character).animate({left: -50}, {
-        duration: 150,
-        easing: 'linear',
-        complete: function() {
-          deadStyle();
-        }
-      });
-  }
 
 
 
