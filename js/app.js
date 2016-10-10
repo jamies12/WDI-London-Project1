@@ -1,6 +1,6 @@
 $(function() {
 
-  var checkCollisionsIntervalId;
+  // var checkCollisionsIntervalId;
   var $playSpace = $('.gameSpace');
   var $character = $('.player');
   var $obstacle = $('.obstacle');
@@ -15,17 +15,35 @@ $(function() {
   var $slideCount = 0;
   var $lifeCounter = $('.lifeScore');
   var $lifeAmount = 200;
+  var $restartButton = $('#retry');
   var $playerDead = function() {
       $($character).animate({left: -50}, {
         duration: 150,
         easing: 'linear',
         complete: function() {
-          deadStyle();
+           deadStyle();
         }
       });
   };
 
   $lifeCounter.html('HEALTH: ' + $lifeAmount);
+
+  $restartButton.hide();
+
+  // reset conditions
+  window.addEventListener($lifeCounter, function() {
+    if($lifeCounter === 0){
+      $restartButton.show();
+
+    }
+  });
+
+  // restart on death
+  $($restartButton).click(function() {
+    console.log('Clicked!');
+    location.reload();
+  });
+
 
   setInterval(function() {
     $playerScore.html('Score: ' + $scoreCounter);
@@ -102,6 +120,8 @@ $(function() {
   }
   runAnimation4(Math.floor(Math.random()*4000) + 1000);
 
+
+
     // jump function
   $(this).keyup(function(e) {
     if($jumpCount < 2 && (e.keyCode === 0 || e.keyCode === 32)) {
@@ -167,7 +187,7 @@ $(function() {
     });
   }
   function standStyle() {
-    $($character).css({height: 70,
+    $($character).css({height: 60,
       width: 40
     });
   }
@@ -275,9 +295,7 @@ $(function() {
       $lifeCounter.html('HEALTH: ' + $lifeAmount);}
   }
 
-  if ($lifeAmount <= 0){
-    $playerDead();
-  }
+
 
 
 

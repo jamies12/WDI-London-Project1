@@ -1,3 +1,6 @@
+body{
+  /*background-color: black;*/
+}
 .gameSpace {
   height: 500px;
   width: 900px;
@@ -8,10 +11,11 @@
 }
 
 .player {
-  height: 70px;
+  height: 60px;
   width: 40px;
-  background-color: yellow;
-  background-image: url('Images/player-character.png');
+  /*background-color: yellow;*/
+  border-radius: 8px;
+  background-image: url('http://i.imgur.com/MM1FOLx.png');
   position: inherit;
   top: 340px;
   left: 110px;
@@ -31,7 +35,7 @@ button {
 }
 .lowObstacle {
   height: 30px;
-  width: 60px;
+  width: 50px;
   background-color: purple;
   position: inherit;
   top: 380px;
@@ -39,10 +43,10 @@ button {
 }
 .highObstacle {
   height: 50px;
-  width: 70px;
+  width: 60px;
   background-color: orange;
   position: inherit;
-  top: 315px;
+  top: 310px;
   left: 915px;
 }
 .airObstacle {
@@ -50,7 +54,7 @@ button {
   width: 50px;
   background-color: black;
   position: inherit;
-  top: 190px;
+  top: 175px;
   left: 915px;
 }
 .score {
