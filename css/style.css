@@ -1,5 +1,5 @@
 body{
-  /*background-color: black;*/
+  background-color: black;
 }
 .gameSpace {
   height: 500px;
@@ -8,12 +8,36 @@ body{
   margin-left: 5%;
   position: absolute;
   top: 80px;
+  z-index: 1;
 }
-
+.backGround {
+  height: 500px;
+  width: 900px;
+  border-style: none;
+  position: inherit;
+  top: 0px;
+  background-color: pink;
+  z-index: -2;
+}
+.road{
+  height: 150px;
+  width: 900px;
+  border-style: none;
+  position: inherit;
+  top: 350px;
+  background-color: grey;
+  z-index: -1;
+}
+.titleCard {
+  height: 200px;
+  width: 300px;
+  position: inherit;
+  left: 350px;
+  top: 100px;
+}
 .player {
   height: 60px;
   width: 40px;
-  /*background-color: yellow;*/
   border-radius: 8px;
   background-image: url('http://i.imgur.com/MM1FOLx.png');
   position: inherit;
@@ -22,8 +46,29 @@ body{
 }
 button {
   position: absolute;
-  top: 260px;
-  left: 550px;
+  top: 360px;
+  left: 500px;
+  z-index: 2;
+}
+.startGameEasy{
+  position: absolute;
+  top: 320px;
+  left: 500px;
+  z-index: 2;
+}
+.startGameHard{
+  position: absolute;
+  top: 360px;
+  left: 500px;
+  z-index: 2;
+}
+.healthPickUp{
+  height: 40px;
+  width: 40px;
+  background-color: green;
+  position: inherit;
+  top: 330px;
+  left: 860px;
 }
 .obstacle {
   height: 50px;
@@ -31,7 +76,7 @@ button {
   background-color: blue;
   position: inherit;
   top: 360px;
-  left: 995px;
+  left: 850px;
 }
 .lowObstacle {
   height: 30px;
@@ -39,7 +84,7 @@ button {
   background-color: purple;
   position: inherit;
   top: 380px;
-  left: 915px;
+  left: 860px;
 }
 .highObstacle {
   height: 50px;
@@ -47,7 +92,7 @@ button {
   background-color: orange;
   position: inherit;
   top: 310px;
-  left: 915px;
+  left: 860px;
 }
 .airObstacle {
   height: 30px;
@@ -55,7 +100,7 @@ button {
   background-color: black;
   position: inherit;
   top: 175px;
-  left: 915px;
+  left: 860px;
 }
 .score {
   height: 30px;
@@ -70,15 +115,21 @@ button {
   width: 200px;
   color: blue;
   position: absolute;
-  top: 65px;
-  left: 500px;
+  top: 320px;
+  left: 480px;
 }
 .lifeScore {
   height: 30px;
   width: 120px;
-  /*background-color: red;*/
+
   color: red;
   position: inherit;
   top: 80px;
   left: 90px;
+}
+.controls {
+  color: blue;
+  position: absolute;
+  top: 600px;
+  left: 100px;
 }
