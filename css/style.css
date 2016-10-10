@@ -21,9 +21,9 @@ body{
   left: 110px;
 }
 button {
-  position: inherit;
-  top: 160px;
-  left: 420px;
+  position: absolute;
+  top: 260px;
+  left: 550px;
 }
 .obstacle {
   height: 50px;
@@ -64,6 +64,14 @@ button {
   position: inherit;
   top: 35px;
   left: 685px;
+}
+.highScore {
+  height: 30px;
+  width: 200px;
+  color: blue;
+  position: absolute;
+  top: 65px;
+  left: 500px;
 }
 .lifeScore {
   height: 30px;

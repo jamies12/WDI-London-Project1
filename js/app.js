@@ -16,6 +16,7 @@ $(function() {
   var $lifeCounter = $('.lifeScore');
   var $lifeAmount = 200;
   var $restartButton = $('#retry');
+  var $finalScore = $('.highScore');
   var $playerDead = function() {
       $($character).animate({left: -50}, {
         duration: 150,
@@ -45,11 +46,17 @@ $(function() {
   });
 
 
-  setInterval(function() {
-    $playerScore.html('Score: ' + $scoreCounter);
-    $scoreCounter++;
-  }, 50);
+  // score tracker function
+  var $scoreIncrease = setInterval(function() {
+        $playerScore.html('Score: ' + $scoreCounter);
+        $finalScore.html('HIGH SCORE: ' + $scoreCounter);
+        $scoreCounter++;
+      }, 50);
 
+  // $scoreIncrease();
+
+
+  // $finalScore.html('HIGH SCORE: ' + $scoreCounter);
 
   // obstacle movement loops
   function runAnimation(delay) {
@@ -193,7 +200,7 @@ $(function() {
   }
 
   // collision detection
-
+  //
   // finding player position
   function findPosition($character) {
     var pos = $character.position();
@@ -217,10 +224,13 @@ $(function() {
     var verticalMatch = comparePositions(pos[1], pos2[1]);
 
     var match = horizontalMatch && verticalMatch;
-    if (match) {console.log('COLLISION!');
+    if (match) {
+      // console.log('COLLISION!');
       $lifeAmount--;
-      $lifeCounter.html('HEALTH: ' + $lifeAmount);}
-  }
+      $lifeCounter.html('HEALTH: ' + $lifeAmount);
+      checkAlive();
+      }
+    }
 
 
   // function initiateCheckCollisions2() {
@@ -242,10 +252,13 @@ $(function() {
     var verticalMatch2 = comparePositions2(pos[1], pos3[1]);
 
     var match = horizontalMatch2 && verticalMatch2;
-    if (match) {console.log('COLLISION HIGH!');
+    if (match) {
+      // console.log('COLLISION HIGH!');
       $lifeAmount--;
-      $lifeCounter.html('HEALTH: ' + $lifeAmount);}
-  }
+      $lifeCounter.html('HEALTH: ' + $lifeAmount);
+      checkAlive();
+      }
+    }
 
 
   // function initiateCheckCollisions3() {
@@ -267,10 +280,13 @@ $(function() {
     var verticalMatch3 = comparePositions3(pos[1], pos4[1]);
 
     var match = horizontalMatch3 && verticalMatch3;
-    if (match) {console.log('COLLISION LOW!');
+    if (match) {
+      // console.log('COLLISION LOW!');
       $lifeAmount--;
-      $lifeCounter.html('HEALTH: ' + $lifeAmount);}
-  }
+      $lifeCounter.html('HEALTH: ' + $lifeAmount);
+      checkAlive();
+      }
+    }
   // function initiateCheckCollisions4() {
   //   checkCollisionsIntervalId1 = setInterval(checkCollisions4, 3500);
   // }
@@ -290,12 +306,27 @@ $(function() {
     var verticalMatch4 = comparePositions4(pos[1], pos5[1]);
 
     var match = horizontalMatch4 && verticalMatch4;
-    if (match) {console.log('COLLISION AIR!');
+    if (match) {
+      // console.log('COLLISION AIR!');
       $lifeAmount--;
-      $lifeCounter.html('HEALTH: ' + $lifeAmount);}
-  }
+      $lifeCounter.html('HEALTH: ' + $lifeAmount);
+      checkAlive();
+      }
+    }
 
+    function checkAlive() {
+      if ($lifeAmount > 1) {
 
+      } else {
+        // $playSpace.fadeOut('slow');
+        clearInterval($scoreIncrease);
+        $restartButton.show('slow');
+      }
+    }
+
+    // function $stopScore(){
+    //   clearInterval($scoreIncrease);
+    // }
 
 
 
