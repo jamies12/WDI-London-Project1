@@ -23,16 +23,18 @@ $(function() {
     $miamiRunner();
     $gameStartEasy.hide();
     $gameStartHard.hide();
-    $title.fadeOut('slow');
+    $title.fadeOut(2000);
     $status.fadeIn('slow');
+    $status.fadeOut(8000);
   });
 
   $($gameStartHard).click(function(){
     $miamiRunnerHard();
     $gameStartEasy.hide();
     $gameStartHard.hide();
-    $title.fadeOut('slow');
+    $title.fadeOut(2000);
     $status.fadeIn('slow');
+    $status.fadeOut(8000);
   });
 
 
@@ -58,8 +60,11 @@ $(function() {
     var $backGround = $('.backGround');
     var $road = $('.road');
 
-    setInterval(function() {$($backGround).animate({'background-position': '-=1px'});
-    }, 500);
+
+
+    setInterval(function() {$($backGround).animate({'background-position': '-=1px'}, {
+      easing: 'linear'});
+    }, 100);
 
     setInterval(function() {$($road).animate({'background-position': '-=50px'}, {
       duration: 500,
@@ -196,7 +201,7 @@ $(function() {
         $($character).css({
         'background-position': '6px 0px',
         'height': '91' });
-        $($character).animate({ top: '-=90px' }, {
+        $($character).animate({ top: '-=100px' }, {
           duration: 250,
           easing: 'linear',
           complete: function() {
@@ -207,7 +212,7 @@ $(function() {
     });
 
     function fallDown() {
-      $($character).animate({top: '+=90px',
+      $($character).animate({top: '+=100px',
         'background-position': '35px 0px'},
         {
           duration: 160,
@@ -228,8 +233,8 @@ $(function() {
       if($slideCount < 1 && (e.keyCode === 16)) {
         $slideCount++;
         $($character).css({'background-position': '-15px 116px', 'height': '39px', 'width': '49px'});
-        $($character).animate({ top: '+=70px'}, {
-          duration: 130,
+        $($character).animate({ top: '+=75px'}, {
+          duration: 360,
           easing: 'linear',
           complete: function() {
             getUp();
@@ -240,15 +245,15 @@ $(function() {
     });
 
     function getUp() {
-      $($character).animate({top: '-=70px'}, {
-        duration: 360,
+      $($character).animate({top: '-=75px'}, {
+        duration: 130,
         easing: 'linear',
         complete: function() {
           // standStyle();
         }
       });
       $($character).css({
-        'background-position': '0px 70px',
+        'background-position': '0px 75px',
         'height': '60px',
         'width': '38px'});
         $slideCount--;
@@ -428,7 +433,7 @@ $(function() {
       setInterval(function() {$($backGround).animate({'background-position': '-=1px'}, {
         duration: 50,
         easing: 'linear'});
-      }, 200);
+      }, 100);
 
       setInterval(function() {$($road).animate({'background-position': '-=50px'}, {
         duration: 50,
@@ -537,7 +542,7 @@ $(function() {
       function runAnimation5(delay) {
         setTimeout(function(){
           $healthOrb.animate({ left: 0 }, {
-            duration: 1400,
+            duration: 1600,
             easing: 'linear',
             progress: function() {
              checkCollisions5();
@@ -545,13 +550,13 @@ $(function() {
             },
             complete: function() {
               $(this).css({left: 860});
-              runAnimation5(Math.floor(Math.random()*25000) + 25000);
+              runAnimation5(Math.floor(Math.random()*20000) + 20000);
               $healthOrb.hide();
             }
           });
         }, delay);
       }
-      runAnimation5(Math.floor(Math.random()*25000) + 25000);
+      runAnimation5(Math.floor(Math.random()*20000) + 20000);
 
 
 
@@ -561,7 +566,7 @@ $(function() {
           $jumpCount++;
           $($character).css({'background-position': '6px 0px',
         'height': '91' });
-          $($character).animate({ top: '-=90px' }, {
+          $($character).animate({ top: '-=100px' }, {
             duration: 220,
             easing: 'linear',
             complete: function() {
@@ -572,7 +577,7 @@ $(function() {
       });
 
       function fallDown() {
-        $($character).animate({top: '+=90px', 'background-position': '35px 0px'}, {
+        $($character).animate({top: '+=100px', 'background-position': '35px 0px'}, {
           duration: 120,
           easing: 'linear',
           complete: function() {
@@ -591,8 +596,8 @@ $(function() {
         if($slideCount < 1 && (e.keyCode === 16)) {
           $slideCount++;
           $($character).css({'background-position': '-15px 116px', 'height': '39px', 'width': '49px'});
-          $($character).animate({ top: '+=70px'}, {
-            duration: 110,
+          $($character).animate({ top: '+=75px'}, {
+            duration: 300,
             easing: 'linear',
             complete: function() {
               getUp();
@@ -603,8 +608,8 @@ $(function() {
       });
 
       function getUp() {
-        $($character).animate({top: '-=70px'}, {
-          duration: 300,
+        $($character).animate({top: '-=75px'}, {
+          duration: 110,
           easing: 'linear',
           complete: function() {
           }

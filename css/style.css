@@ -1,5 +1,6 @@
 body{
   background-color: black;
+  font-family: 'Audiowide', cursive;
 }
 .gameSpace {
   height: 500px;
@@ -34,8 +35,9 @@ body{
 .titleCard {
   height: 200px;
   width: 300px;
+  font-size: 30px;
   position: inherit;
-  left: 350px;
+  left: 335px;
   top: 100px;
 }
 .player {
@@ -48,20 +50,33 @@ body{
   top: 340px;
   left: 110px;
 }
+
 button {
   position: absolute;
+  font-family: 'Audiowide', cursive;
+  background-color: #e742d3;
+  border-radius: 15px;
+  border-style: hidden;
   top: 360px;
-  left: 500px;
+  left: 530px;
   z-index: 2;
 }
 .startGameEasy{
   position: absolute;
+  background-color: #24a5d4;
+  font-family: 'Audiowide', cursive;
+  border-radius: 15px;
+  border-style: hidden;
   top: 320px;
   left: 500px;
   z-index: 2;
 }
 .startGameHard{
   position: absolute;
+  font-family: 'Audiowide', cursive;
+  background-color: #d42489;
+  border-radius: 15px;
+  border-style: hidden;
   top: 360px;
   left: 500px;
   z-index: 2;
@@ -69,7 +84,9 @@ button {
 .healthPickUp{
   height: 40px;
   width: 40px;
-  background-color: green;
+  background-image: url('https://i.imgur.com/lCBASYt.png');
+  background-position: 0 0;
+  border-radius: 20px;
   position: inherit;
   top: 330px;
   left: 860px;
@@ -77,15 +94,19 @@ button {
 .obstacle {
   height: 50px;
   width: 40px;
-  background-color: blue;
+  background-image: url('https://i.imgur.com/lCBASYt.png');
+  background-position: 140px 50px;
+  border-radius: 5px;
   position: inherit;
-  top: 360px;
+  top: 370px;
   left: 850px;
 }
 .lowObstacle {
   height: 30px;
   width: 50px;
-  background-color: purple;
+  background-image: url('https://i.imgur.com/lCBASYt.png');
+  border-radius: 5px;
+  background-position: 0px -40px ;
   position: inherit;
   top: 380px;
   left: 860px;
@@ -93,7 +114,9 @@ button {
 .highObstacle {
   height: 50px;
   width: 60px;
-  background-color: orange;
+  background-image: url('https://i.imgur.com/lCBASYt.png');
+  border-radius: 5px;
+  background-position: 100px 50px;
   position: inherit;
   top: 310px;
   left: 860px;
@@ -101,17 +124,23 @@ button {
 .airObstacle {
   height: 30px;
   width: 50px;
-  background-color: black;
+  background-image: url('https://i.imgur.com/lCBASYt.png');
+  background-position: 50px -40px ;
+  border-radius: 5px;
   position: inherit;
   top: 175px;
   left: 860px;
 }
+.status {
+  position: absolute;
+  top: 200px;
+}
 .score {
   height: 30px;
   width: 200px;
-  color: blue;
+  color: white;
   position: inherit;
-  top: 35px;
+  top: 80px;
   left: 685px;
 }
 .highScore {
@@ -125,14 +154,13 @@ button {
 .lifeScore {
   height: 30px;
   width: 120px;
-
-  color: red;
+  color: #12e20b;
   position: inherit;
   top: 80px;
   left: 90px;
 }
 .controls {
-  color: blue;
+  color: white;
   position: absolute;
   top: 600px;
   left: 100px;
