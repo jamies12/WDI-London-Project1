@@ -37,9 +37,10 @@ body{
 }
 .player {
   height: 60px;
-  width: 40px;
+  width: 38px;
   border-radius: 8px;
-  background-image: url('http://i.imgur.com/MM1FOLx.png');
+  background-image: url('https://i.imgur.com/6NqPabN.png');
+  background-position: 0px 70px ;
   position: inherit;
   top: 340px;
   left: 110px;
