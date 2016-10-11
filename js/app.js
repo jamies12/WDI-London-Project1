@@ -607,7 +607,7 @@ $(function() {
 
       function slideStyle() {
         $($character).css({height:30,
-          width: 70
+          width: 50
         });
       }
       function standStyle() {
