@@ -546,6 +546,8 @@ $(function() {
       $(this).keyup(function(e) {
         if($jumpCount < 2 && (e.keyCode === 0 || e.keyCode === 32)) {
           $jumpCount++;
+          $($character).css({'background-position': '6px 0px',
+        'height': '91' });
           $($character).animate({ top: '-=90px' }, {
             duration: 220,
             easing: 'linear',
@@ -557,12 +559,17 @@ $(function() {
       });
 
       function fallDown() {
+        $($character).css({'background-position': '35px 0px'});
         $($character).animate({top: '+=90px'}, {
           duration: 120,
           easing: 'linear',
           complete: function() {
           }
         });
+        $($character).css({
+          'background-position': '0px 70px',
+          'height': '60px',
+          'width': '38px'});
         $jumpCount--;
 
       }
@@ -571,7 +578,8 @@ $(function() {
       $(this).keyup(function(e) {
         if($slideCount < 1 && (e.keyCode === 16)) {
           $slideCount++;
-          slideStyle();
+          // slideStyle();
+          $($character).css({'background-position': '-15px 116px', 'height': '39px', 'width': '49px'});
           $($character).animate({ top: '+=70px'}, {
             duration: 110,
             easing: 'linear',
@@ -588,9 +596,13 @@ $(function() {
           duration: 300,
           easing: 'linear',
           complete: function() {
-            standStyle();
+            // standStyle();
           }
         });
+        $($character).css({
+          'background-position': '0px 70px',
+          'height': '60px',
+          'width': '38px'});
         $slideCount--;
       }
 
@@ -598,7 +610,8 @@ $(function() {
       // only useable when art assets are finished
       //
       // function airStyle() {
-      //     $($character).css({});
+      //     $($character).css({'background-position': '6 54',
+      //    });
       // }
       //
       // function fallStyle() {
@@ -607,12 +620,12 @@ $(function() {
 
       function slideStyle() {
         $($character).css({height:30,
-          width: 50
+          width: 50,
         });
       }
       function standStyle() {
-        $($character).css({height: 60,
-          width: 40
+        $($character).css({height: '60px',
+          width: '38px'
         });
       }
 
