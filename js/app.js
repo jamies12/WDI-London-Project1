@@ -55,7 +55,16 @@ $(function() {
     var $lifeAmount = 200;
     var $restartButton = $('#retry');
     var $finalScore = $('.highScore');
+    var $backGround = $('.backGround');
+    var $road = $('.road');
 
+    setInterval(function() {$($backGround).animate({'background-position': '-=1px'});
+    }, 500);
+
+    setInterval(function() {$($road).animate({'background-position': '-=50px'}, {
+      duration: 500,
+      easing: 'linear'});
+    });
 
     $lifeCounter.html('HEALTH: ' + $lifeAmount);
 
@@ -184,6 +193,9 @@ $(function() {
     $(this).keyup(function(e) {
       if($jumpCount < 2 && (e.keyCode === 0 || e.keyCode === 32)) {
         $jumpCount++;
+        $($character).css({
+        'background-position': '6px 0px',
+        'height': '91' });
         $($character).animate({ top: '-=90px' }, {
           duration: 250,
           easing: 'linear',
@@ -195,11 +207,17 @@ $(function() {
     });
 
     function fallDown() {
-      $($character).animate({top: '+=90px'}, {
-        duration: 160,
-        easing: 'linear',
-        complete: function() {
-        }
+      $($character).animate({top: '+=90px',
+        'background-position': '35px 0px'},
+        {
+          duration: 160,
+          easing: 'linear',
+          complete: function() {
+            $($character).css({
+              'background-position': '0px 70px',
+              'height': '60px',
+              'width': '38px'});
+          }
       });
       $jumpCount--;
 
@@ -209,7 +227,7 @@ $(function() {
     $(this).keyup(function(e) {
       if($slideCount < 1 && (e.keyCode === 16)) {
         $slideCount++;
-        slideStyle();
+        $($character).css({'background-position': '-15px 116px', 'height': '39px', 'width': '49px'});
         $($character).animate({ top: '+=70px'}, {
           duration: 130,
           easing: 'linear',
@@ -226,32 +244,30 @@ $(function() {
         duration: 360,
         easing: 'linear',
         complete: function() {
-          standStyle();
+          // standStyle();
         }
       });
-      $slideCount--;
+      $($character).css({
+        'background-position': '0px 70px',
+        'height': '60px',
+        'width': '38px'});
+        $slideCount--;
     }
 
+
     // different character css styles for different actions
-    // only useable when art assets are finished
-    //
-    // function airStyle() {
-    //     $($character).css({});
-    // }
-    //
-    // function fallStyle() {
-    //   $($character).css({});
-    // }
+
 
     function slideStyle() {
       $($character).css({height:30,
-        width: 70
+        width: 50
       });
     }
     function standStyle() {
-      $($character).css({height: 60,
-        width: 40
+      $($character).css({height: '60px',
+        width: '38px'
       });
+
     }
 
     // collision detection
@@ -280,17 +296,12 @@ $(function() {
 
       var match = horizontalMatch && verticalMatch;
       if (match) {
-        // console.log('COLLISION!');
         $lifeAmount--;
         $lifeCounter.html('HEALTH: ' + $lifeAmount);
         checkAlive();
         }
       }
 
-
-    // function initiateCheckCollisions2() {
-    //   checkCollisionsIntervalId1 = setInterval(checkCollisions2, 2500);
-    // }
 
     function comparePositions2(p1, p3) {
       var x1 = p1[0] < p3[0] ? p1 : p3;
@@ -308,17 +319,12 @@ $(function() {
 
       var match = horizontalMatch2 && verticalMatch2;
       if (match) {
-        // console.log('COLLISION HIGH!');
         $lifeAmount--;
         $lifeCounter.html('HEALTH: ' + $lifeAmount);
         checkAlive();
         }
       }
 
-
-    // function initiateCheckCollisions3() {
-    //   checkCollisionsIntervalId1 = setInterval(checkCollisions3, 3500);
-    // }
 
     function comparePositions3(p1, p4) {
       var x1 = p1[0] < p4[0] ? p1 : p4;
@@ -336,15 +342,11 @@ $(function() {
 
       var match = horizontalMatch3 && verticalMatch3;
       if (match) {
-        // console.log('COLLISION LOW!');
         $lifeAmount--;
         $lifeCounter.html('HEALTH: ' + $lifeAmount);
         checkAlive();
         }
       }
-    // function initiateCheckCollisions4() {
-    //   checkCollisionsIntervalId1 = setInterval(checkCollisions4, 3500);
-    // }
 
     function comparePositions4(p1, p5) {
       var x1 = p1[0] < p5[0] ? p1 : p5;
@@ -362,7 +364,6 @@ $(function() {
 
       var match = horizontalMatch4 && verticalMatch4;
       if (match) {
-        // console.log('COLLISION AIR!');
         $lifeAmount--;
         $lifeCounter.html('HEALTH: ' + $lifeAmount);
         checkAlive();
@@ -381,7 +382,6 @@ $(function() {
 
         var match = horizontalMatch5 && verticalMatch5;
         if (match) {
-          // console.log('COLLISION AIR!');
           $lifeAmount++;
           $lifeCounter.html('HEALTH: ' + $lifeAmount);
           checkAlive();
@@ -422,6 +422,19 @@ $(function() {
       var $lifeAmount = 100;
       var $restartButton = $('#retry');
       var $finalScore = $('.highScore');
+      var $backGround = $('.backGround');
+      var $road = $('.road');
+
+      setInterval(function() {$($backGround).animate({'background-position': '-=1px'}, {
+        duration: 50,
+        easing: 'linear'});
+      }, 200);
+
+      setInterval(function() {$($road).animate({'background-position': '-=50px'}, {
+        duration: 50,
+        easing: 'linear'});
+      });
+
 
       $lifeCounter.html('HEALTH: ' + $lifeAmount);
 
@@ -559,26 +572,24 @@ $(function() {
       });
 
       function fallDown() {
-        $($character).css({'background-position': '35px 0px'});
-        $($character).animate({top: '+=90px'}, {
+        $($character).animate({top: '+=90px', 'background-position': '35px 0px'}, {
           duration: 120,
           easing: 'linear',
           complete: function() {
+            $($character).css({
+              'background-position': '0px 70px',
+              'height': '60px',
+              'width': '38px'});
           }
         });
-        $($character).css({
-          'background-position': '0px 70px',
-          'height': '60px',
-          'width': '38px'});
         $jumpCount--;
-
       }
+
 
         // slide function
       $(this).keyup(function(e) {
         if($slideCount < 1 && (e.keyCode === 16)) {
           $slideCount++;
-          // slideStyle();
           $($character).css({'background-position': '-15px 116px', 'height': '39px', 'width': '49px'});
           $($character).animate({ top: '+=70px'}, {
             duration: 110,
@@ -596,7 +607,6 @@ $(function() {
           duration: 300,
           easing: 'linear',
           complete: function() {
-            // standStyle();
           }
         });
         $($character).css({
@@ -607,16 +617,7 @@ $(function() {
       }
 
       // different character css styles for different actions
-      // only useable when art assets are finished
-      //
-      // function airStyle() {
-      //     $($character).css({'background-position': '6 54',
-      //    });
-      // }
-      //
-      // function fallStyle() {
-      //   $($character).css({});
-      // }
+
 
       function slideStyle() {
         $($character).css({height:30,
@@ -655,17 +656,12 @@ $(function() {
 
         var match = horizontalMatch && verticalMatch;
         if (match) {
-          // console.log('COLLISION!');
           $lifeAmount--;
           $lifeCounter.html('HEALTH: ' + $lifeAmount);
           checkAlive();
           }
         }
 
-
-      // function initiateCheckCollisions2() {
-      //   checkCollisionsIntervalId1 = setInterval(checkCollisions2, 2500);
-      // }
 
       function comparePositions2(p1, p3) {
         var x1 = p1[0] < p3[0] ? p1 : p3;
@@ -683,7 +679,6 @@ $(function() {
 
         var match = horizontalMatch2 && verticalMatch2;
         if (match) {
-          // console.log('COLLISION HIGH!');
           $lifeAmount--;
           $lifeCounter.html('HEALTH: ' + $lifeAmount);
           checkAlive();
@@ -691,9 +686,6 @@ $(function() {
         }
 
 
-      // function initiateCheckCollisions3() {
-      //   checkCollisionsIntervalId1 = setInterval(checkCollisions3, 3500);
-      // }
 
       function comparePositions3(p1, p4) {
         var x1 = p1[0] < p4[0] ? p1 : p4;
@@ -711,15 +703,11 @@ $(function() {
 
         var match = horizontalMatch3 && verticalMatch3;
         if (match) {
-          // console.log('COLLISION LOW!');
           $lifeAmount--;
           $lifeCounter.html('HEALTH: ' + $lifeAmount);
           checkAlive();
           }
         }
-      // function initiateCheckCollisions4() {
-      //   checkCollisionsIntervalId1 = setInterval(checkCollisions4, 3500);
-      // }
 
       function comparePositions4(p1, p5) {
         var x1 = p1[0] < p5[0] ? p1 : p5;
@@ -737,7 +725,6 @@ $(function() {
 
         var match = horizontalMatch4 && verticalMatch4;
         if (match) {
-          // console.log('COLLISION AIR!');
           $lifeAmount--;
           $lifeCounter.html('HEALTH: ' + $lifeAmount);
           checkAlive();
@@ -756,7 +743,6 @@ $(function() {
 
           var match = horizontalMatch5 && verticalMatch5;
           if (match) {
-            // console.log('COLLISION AIR!');
             $lifeAmount++;
             $lifeCounter.html('HEALTH: ' + $lifeAmount);
             checkAlive();

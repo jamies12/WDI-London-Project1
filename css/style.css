@@ -13,15 +13,18 @@ body{
 .backGround {
   height: 500px;
   width: 900px;
+  background-image: url('https://i.imgur.com/2ovRdOy.png');
+  background-repeat: repeat;
   border-style: none;
   position: inherit;
   top: 0px;
-  background-color: pink;
   z-index: -2;
 }
 .road{
   height: 150px;
   width: 900px;
+  background-image: url('https://i.imgur.com/y5awqjK.png');
+  background-repeat: repeat;
   border-style: none;
   position: inherit;
   top: 350px;
