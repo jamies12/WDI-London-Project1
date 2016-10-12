@@ -225,7 +225,6 @@ $(function() {
           }
       });
       $jumpCount--;
-
     }
 
       // slide function
@@ -249,7 +248,6 @@ $(function() {
         duration: 130,
         easing: 'linear',
         complete: function() {
-          // standStyle();
         }
       });
       $($character).css({

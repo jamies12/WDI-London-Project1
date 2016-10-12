@@ -1,11 +1,14 @@
 body{
-  background-color: black;
+  /*background-color: black;*/
+  background-image: url('http://orig10.deviantart.net/48c0/f/2016/204/4/b/retrowave_80_s_bg_by_rafael_de_jongh-d9wsq5j.png');
+  background-repeat: no-repeat;
   font-family: 'Audiowide', cursive;
 }
 .gameSpace {
   height: 500px;
   width: 900px;
   border-style: solid;
+  border-radius: 4px;
   margin-left: 5%;
   position: absolute;
   top: 80px;
@@ -146,7 +149,7 @@ button {
 .highScore {
   height: 30px;
   width: 200px;
-  color: blue;
+  color: #46cce8;
   position: absolute;
   top: 320px;
   left: 480px;
