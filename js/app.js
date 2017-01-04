@@ -62,13 +62,15 @@ $(function() {
 
 
 
-    setInterval(function() {$($backGround).animate({'background-position': '-=1px'}, {
-      easing: 'linear'});
+    setInterval(function() {
+      $($backGround).animate({'background-position': '-=1px'}, {
+        easing: 'linear'});
     }, 100);
 
-    setInterval(function() {$($road).animate({'background-position': '-=50px'}, {
-      duration: 500,
-      easing: 'linear'});
+    setInterval(function() {
+      $($road).animate({'background-position': '-=50px'}, {
+        duration: 500,
+        easing: 'linear'});
     });
 
     $lifeCounter.html('HEALTH: ' + $lifeAmount);
@@ -90,10 +92,10 @@ $(function() {
 
     // score tracker function
     var $scoreIncrease = setInterval(function() {
-          $playerScore.html('Score: ' + $scoreCounter);
-          $finalScore.html('HIGH SCORE: ' + $scoreCounter);
-          $scoreCounter++;
-        }, 50);
+      $playerScore.html('Score: ' + $scoreCounter);
+      $finalScore.html('HIGH SCORE: ' + $scoreCounter);
+      $scoreCounter++;
+    }, 50);
 
     // obstacle movement loops
     function runAnimation(delay) {
@@ -121,8 +123,8 @@ $(function() {
           duration: 2400,
           easing: 'linear',
           progress: function() {
-           checkCollisions2();
-           $obstacleUp.show();
+            checkCollisions2();
+            $obstacleUp.show();
           },
           complete: function() {
             $(this).css({left: 860});
@@ -140,8 +142,8 @@ $(function() {
           duration: 2400,
           easing: 'linear',
           progress: function() {
-           checkCollisions3();
-           $obstacleLow.show();
+            checkCollisions3();
+            $obstacleLow.show();
           },
           complete: function() {
             $(this).css({left: 860});
@@ -159,8 +161,8 @@ $(function() {
           duration: 2400,
           easing: 'linear',
           progress: function() {
-           checkCollisions4();
-           $obstacleAir.show();
+            checkCollisions4();
+            $obstacleAir.show();
           },
           complete: function() {
             $(this).css({left: 860});
@@ -179,8 +181,8 @@ $(function() {
           duration: 2400,
           easing: 'linear',
           progress: function() {
-           checkCollisions5();
-           $healthOrb.show();
+            checkCollisions5();
+            $healthOrb.show();
           },
           complete: function() {
             $(this).css({left: 860});
@@ -199,14 +201,14 @@ $(function() {
       if($jumpCount < 2 && (e.keyCode === 0 || e.keyCode === 32)) {
         $jumpCount++;
         $($character).css({
-        'background-position': '6px 0px',
-        'height': '91' });
+          'background-position': '6px 0px',
+          'height': '91' });
         $($character).animate({ top: '-=100px' }, {
           duration: 250,
           easing: 'linear',
           complete: function() {
             fallDown();
-            }
+          }
         });
       }
     });
@@ -223,7 +225,7 @@ $(function() {
               'height': '60px',
               'width': '38px'});
           }
-      });
+        });
       $jumpCount--;
     }
 
@@ -254,24 +256,24 @@ $(function() {
         'background-position': '0px 75px',
         'height': '60px',
         'width': '38px'});
-        $slideCount--;
+      $slideCount--;
     }
 
 
     // different character css styles for different actions
 
 
-    function slideStyle() {
-      $($character).css({height:30,
-        width: 50
-      });
-    }
-    function standStyle() {
-      $($character).css({height: '60px',
-        width: '38px'
-      });
-
-    }
+    // function slideStyle() {
+    //   $($character).css({height:30,
+    //     width: 50
+    //   });
+    // }
+    // function standStyle() {
+    //   $($character).css({height: '60px',
+    //     width: '38px'
+    //   });
+    //
+    // }
 
     // collision detection
     //
